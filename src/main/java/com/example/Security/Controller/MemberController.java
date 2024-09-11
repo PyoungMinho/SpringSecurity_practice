@@ -22,6 +22,7 @@ public class MemberController {
     public JwtToken signIn(@RequestBody SingInDto singInDto) {
         String username = singInDto.getUsername();
         String password = singInDto.getPassword();
+        log.info("signIn : {}", username);
         JwtToken jwtToken = memberService.signIn(username, password);
         log.info("request username = {}, password = {}", username, password);
         log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
