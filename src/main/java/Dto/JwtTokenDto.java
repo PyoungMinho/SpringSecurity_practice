@@ -1,4 +1,6 @@
 package Dto;
 
-public class JwtTokenDto {
-}
+public record JwtTokenDto(
+        String accssToken,
+        String refreshToken
+) { }
