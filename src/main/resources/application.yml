@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: SecurityPractice
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  secret: "3465ecb303bf12f2fa177f722125eabfefb650193b4196947049da88bff8fef2"
