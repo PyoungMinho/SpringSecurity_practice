@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetalisService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -26,8 +26,8 @@ public class UserDetalisService implements UserDetailsService {
     private UserDetails createUserDetails(User member) {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(member.getUsername())
-                .password(passwordEncoder.encode(member.getPassword()))
-                .roles(member.getRoles().toArray(new String[0])) // 이 부분 수정 필요
+                .password(member.getPassword()) // 비밀번호를 다시 인코딩하지 않음
+                .roles(member.getRoles().toArray(new String[0]))
                 .build();
     }
 
