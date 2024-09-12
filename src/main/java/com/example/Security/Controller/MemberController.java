@@ -18,13 +18,13 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("sign-in")
+    @PostMapping("/sign-in")
     public JwtToken signIn(@RequestBody SingInDto singInDto) {
         String username = singInDto.getUsername();
         String password = singInDto.getPassword();
-        log.info("signIn : {}", username);
+        log.info("signIn : {}, PWD : {} ", username, password);
+
         JwtToken jwtToken = memberService.signIn(username, password);
-        log.info("request username = {}, password = {}", username, password);
         log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
 
         return jwtToken;
