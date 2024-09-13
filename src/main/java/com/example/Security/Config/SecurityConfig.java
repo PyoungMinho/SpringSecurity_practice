@@ -46,7 +46,8 @@ public class SecurityConfig {
                         // 해당 API에 대해서는 모든 요청을 허가
                         .requestMatchers("/members/sign-in").permitAll()
                         // USER 권한이 있어야 요청할 수 있음
-                        .requestMatchers("/members/test").hasRole("USER")
+//                        .requestMatchers("/members/test").hasRole("USER") // Role_USER로 변환된다
+                                .requestMatchers("/members/test").hasAuthority("USER")
                         // 그 외 모든 요청에 대해 인증을 요구
                         .anyRequest().authenticated()
                 )
