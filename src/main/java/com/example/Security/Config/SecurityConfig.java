@@ -32,8 +32,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf(csrf -> csrf.disable());
-
         return httpSecurity
                 // REST API이므로 basic auth 및 csrf 보안을 사용하지 않음
                 .httpBasic(AbstractHttpConfigurer::disable)
@@ -47,7 +45,7 @@ public class SecurityConfig {
                         .requestMatchers("/members/sign-in").permitAll()
                         // USER 권한이 있어야 요청할 수 있음
 //                        .requestMatchers("/members/test").hasRole("USER") // Role_USER로 변환된다
-                                .requestMatchers("/members/test").hasAuthority("USER")
+                        .requestMatchers("/members/test").hasAuthority("USER")
                         // 그 외 모든 요청에 대해 인증을 요구
                         .anyRequest().authenticated()
                 )
