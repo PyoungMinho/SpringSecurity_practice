@@ -1,6 +1,5 @@
 package com.example.Security.Service;
 
-import com.example.Security.Entity.User;
 import com.example.Security.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -2,24 +2,20 @@ package com.example.Security.Jwt;
 
 
 import com.example.Security.Dto.JwtToken;
-import com.example.Security.Entity.User;
 import com.example.Security.Service.CustomUserDetailsService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.*;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Slf4j
