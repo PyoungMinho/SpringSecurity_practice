@@ -87,7 +87,7 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, "", principal.getAuthorities());
     }
 
-    // 토큰 정보를 검증하는 메서드
+    // JWT 토큰 정보 유효성을 검증하는 메서드
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()

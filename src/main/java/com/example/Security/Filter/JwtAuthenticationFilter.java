@@ -15,10 +15,15 @@ import org.springframework.web.filter.GenericFilterBean;
 import java.io.IOException;
 
 @RequiredArgsConstructor
-public class JwtAuthenticationFilter extends GenericFilterBean {
+public class JwtAuthenticationFilter extends GenericFilterBean { // 클라이언트의 요청에서 JWT 토큰을 추출하고, 이를 JwtProvider를 통해 검증한 후 사용자 정보를 설정하는 필터입니다.
+    /* JwtAuthenticationFilter 주요기능
+    HTTP 요청에서 Authorization 헤더를 읽고, JWT 토큰을 추출.
+    추출한 토큰을 JwtProvider로 검증.
+    토큰이 유효하면 해당 토큰에서 사용자 정보를 추출하여 인증 객체(Authentication)를 생성하고, SecurityContext에 저장.*/
+
     private final JwtTokenProvider jwtTokenProvider;
 
-    @Override // 인가에 대한 필터
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         // 1. Request Header에서 JWT 토큰 추출
