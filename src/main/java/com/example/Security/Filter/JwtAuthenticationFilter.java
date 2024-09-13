@@ -18,7 +18,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends GenericFilterBean {
     private final JwtTokenProvider jwtTokenProvider;
 
-    @Override
+    @Override // 인가에 대한 필터
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         // 1. Request Header에서 JWT 토큰 추출

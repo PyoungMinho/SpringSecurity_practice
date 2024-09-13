@@ -30,10 +30,10 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Bean
+    @Bean // 특정 경로에 대한 검증을 하는 필터
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                // REST API이므로 basic auth 및 csrf 보안을 사용하지 않음
+                // REST API이므로 basic auth 및 csrf(session을 사용안해서 필요가 없음으로)보안을 사용하지 않음
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -45,11 +45,13 @@ public class SecurityConfig {
                         .requestMatchers("/members/sign-in").permitAll()
                         // USER 권한이 있어야 요청할 수 있음
 //                        .requestMatchers("/members/test").hasRole("USER") // Role_USER로 변환된다
-                        .requestMatchers("/members/test").hasAuthority("USER")
+                        .requestMatchers("/members/test").hasAuthority("USER") // USER 그대로 확인가능
                         // 그 외 모든 요청에 대해 인증을 요구
                         .anyRequest().authenticated()
                 )
                 // JWT 인증을 위한 필터 추가 (UsernamePasswordAuthenticationFilter 이전에 실행)
+                // 로그인 경로로 POST 요청이 들어오면 UsernamePasswordAuthenticationFilter로 내부에 아이디와 비밀번호를 전달한 후에 검증
+                // 검증을 하는 방법은 DB안에 있는 User 정보를 꺼내와서 UserDetailService가 UserDetails 객체에 담아서 Authentication Manager에서 검증
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 // 커스텀 에러 핸들링
                 .exceptionHandling(exception -> exception
