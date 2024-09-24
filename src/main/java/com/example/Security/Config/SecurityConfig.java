@@ -43,7 +43,7 @@ public class SecurityConfig { //역할: Spring Security의 전반적인 보안 �
         return httpSecurity
                 // REST API이므로 basic auth 및 csrf(session을 사용안해서 필요가 없음으로)보안을 사용하지 않음
                 .httpBasic(AbstractHttpConfigurer::disable) //httpBasic 은 사용자명 비밀번호를 텍스트로 전송하는 가장 기본적인 인증 방식이다.
-                                                            // 하지만 보안에 취약하므로, JWT와 같이 암호화된 토큰 기반의 인증 방식을 사용할 때는 disable() 한다.
+                                                            // 하지만 보안에 취약, JWT와 같이 암호화된 토큰 기반의 인증 방식을 사용할 때는 disable() 한다.
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
