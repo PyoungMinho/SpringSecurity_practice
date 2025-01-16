@@ -27,4 +27,4 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 jwt:
-  secret: "3465ecb303bf12f2fa177f722125eabfefb650193b4196947049da88bff8fef2"
+  secret: ${JWT_SECRET}
